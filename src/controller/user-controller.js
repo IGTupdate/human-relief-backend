@@ -90,12 +90,12 @@ export const deleteUser = async (req, res) => {
 }
 
 export const changePassword = async (request, response) => {
-        console.log(request.params);
+        console.log(request.body.password);
         const password = encription_data(request.body.password);
-        const newPassword = {password:password}
+        const newPassword = {'password':password}; 
         try {
                 let data = await User.updateOne(
-                        request.params,
+                        {_id:request.params.id},
                         {
                                 $set: newPassword
                         }
