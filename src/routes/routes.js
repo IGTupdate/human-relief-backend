@@ -30,7 +30,7 @@ router.get('/',getUser);
 router.post('/userList',tokenVerify,userList);
 router.post('/register',userRegister);
 router.delete('/delete/:id', deleteUser);
-router.put('/edit/:id', editUser);
+router.put('/users/update/:_id', editUser); 
 router.get('/users/search/:key',searchUser);
 router.get('/users/profile/:id',getProfile);
 router.post('/login',userLogin);  
