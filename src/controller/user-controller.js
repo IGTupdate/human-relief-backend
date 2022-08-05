@@ -89,6 +89,23 @@ export const deleteUser = async (req, res) => {
 
 }
 
+export const changePassword = async (request, response) => {
+        console.log(request.params);
+        const password = encription_data(request.body.password);
+        const newPassword = {password:password}
+        try {
+                let data = await User.updateOne(
+                        request.params,
+                        {
+                                $set: newPassword
+                        }
+                );
+                response.send(data);
+        } catch (error) {
+                response.status(409).json({ message: error.message });
+        }
+}
+
 
 export const editUser = async (request, response) => {
         console.log(request.params);

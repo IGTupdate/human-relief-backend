@@ -1,5 +1,5 @@
 import express from "express";
-import {getUser, getProfile, userRegister, deleteUser, editUser, searchUser,userLogin,uniqueUser, userList} from '../controller/user-controller.js'
+import {getUser, getProfile, userRegister, deleteUser, editUser,changePassword, searchUser,userLogin,uniqueUser, userList} from '../controller/user-controller.js'
 
 import jwt from 'jsonwebtoken';
 const jwtkey = "jwt";
@@ -30,7 +30,8 @@ router.get('/',getUser);
 router.post('/userList',tokenVerify,userList);
 router.post('/register',userRegister);
 router.delete('/delete/:id', deleteUser);
-router.put('/users/update/:_id', editUser); 
+router.put('/users/update/:id', editUser); 
+router.put('/users/changePassword/:id', changePassword);  
 router.get('/users/search/:key',searchUser);
 router.get('/users/profile/:id',getProfile);
 router.post('/login',userLogin);  
