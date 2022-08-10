@@ -17,6 +17,21 @@ app.use('/api', router);
 app.use(express.static('public')); 
 app.use('/images', express.static('images'));
 
+
+import multer from 'multer';
+const upload = multer({ dest: "images/" });
+
+
+app.post("/upload_files", upload.single("files"), uploadFiles);
+
+function uploadFiles(req, res) {
+    console.log(req.body);
+    console.log(req.files);
+    res.json({ message: "Successfully uploaded files" });
+}
+
+
+
 mongoose.connect(URL,{
     useNewUrlParser: true, 
     useUnifiedTopology:true

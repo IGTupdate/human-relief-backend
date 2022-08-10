@@ -31,6 +31,7 @@ export const userList = async (req, res) => {
         }
 }
 
+/*
 const tokenVerify = (req, res, next) => {
         const bearerHeader = req.headers['authorization'];
         const status = false;
@@ -50,6 +51,7 @@ const tokenVerify = (req, res, next) => {
                 res.status(404).json({ "Result": "Token not provided" })
         }
 }
+*/
 
 
 
@@ -62,7 +64,8 @@ export const userRegister = async (req, res) => {
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 email: req.body.email,
-                password: password
+                password: password,
+                dateofCreation: getCurrentDate(),
         };
 
         const newUser = new User(userData);
@@ -90,7 +93,6 @@ export const deleteUser = async (req, res) => {
 }
 
 export const changePassword = async (request, response) => {
-        console.log(request.body.password);
         const password = encription_data(request.body.password);
         const newPassword = {'password':password}; 
         try {
@@ -124,14 +126,6 @@ export const editUser = async (request, response) => {
 
 }
 
-const updateToken = async (data, token) => {
-        try {
-                await User.updateOne({ _id: data._id }, { token: '554' });
-                //response.status(201).json(editUser);
-        } catch (error) {
-                //response.status(409).json({ message: error.message});     
-        }
-}
 export const userLogin = async (req, res) => {
         User.findOne({ email: req.body.email }).then((data) => {
                 //    console.log("kio 221");
@@ -140,13 +134,15 @@ export const userLogin = async (req, res) => {
                         let password = description_data(data.password);
                         if (password == req.body.password) {
                                 jwt.sign({ data }, jwtkey, { expiresIn: '2592000s' }, (err, token) => {
-                                        updateToken(data, token);
+                                          
                                         res.status(200).json({
                                                 data,
                                                 token,
                                                 Message: "Login Successful",
                                                 status: true
                                         });
+
+
                                 })
 
                         } else {
@@ -189,7 +185,7 @@ export const uniqueUser = async (req, res) => {
 
 
 export const searchUser = async (req, res) => {
-        let data = await Users.find(
+        let data = await User.find(
                 {
                         "$or": [
                                 { "name": { $regex: req.params.key, $options: '$i' } }
