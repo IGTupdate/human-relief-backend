@@ -8,7 +8,7 @@ import {getUser, getProfile, userRegister, deleteUser, editUser,changePassword, 
 import { deleteFile, deleteFiles, getImagesList, fileUpload } from '../controller/fileController.js';
 import { getParent, addParent, deleteParent, updateParent} from "../controller/parentController.js";
 import { getCategory, addCategory, deleteCategory, updateCategory} from "../controller/categoryController.js";
-import { getDonation, addDonation, deleteDonation, updateDonation ,donationSearchByCategory,searchDonation } from "../controller/donationController.js";
+import { getDonation, addDonation, deleteDonation, updateDonation ,donationSearchByCategory,searchDonation,getSingleDonation } from "../controller/donationController.js";
 
 import jwt from 'jsonwebtoken';
 const jwtkey = "jwt";
@@ -58,6 +58,7 @@ router.put('/updateCategory/:_id',updateCategory);
 
 //import { getDonation, addDonation, deleteDonation, updateDonation } from "../controller/donationController.js";
 router.get('/getDonation',getDonation);
+router.get('/getSingleDonation/:id',getSingleDonation);
 router.post('/addDonation',addDonation);
 router.delete('/deleteDonation/:id',deleteDonation); 
 router.put('/updateDonation/:_id',updateDonation); 

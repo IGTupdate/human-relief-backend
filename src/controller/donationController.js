@@ -11,6 +11,15 @@ export const getDonation = async (req, res) => {
   }
 }
 
+export const getSingleDonation = async (req, res) => {
+  try {
+    let uses = await Donation.find({_id:req.params.id});
+    res.status(200).json(uses)
+  } catch (error) {
+    res.json({ message: error.message })
+  } 
+}
+
 export const addDonation = async (request, response) => {
   if (request.body.title === "") {
     response.json({ message: "Title can not be empty" });
@@ -65,7 +74,6 @@ export const addDonation = async (request, response) => {
 }
 
 export const deleteDonation = async (req, res) => {
-  console.log(req.params.id);
   try {
     await Donation.findByIdAndDelete({ _id: req.params.id });
     res.status(201).json("Parent deleted Successfully");
@@ -75,7 +83,6 @@ export const deleteDonation = async (req, res) => {
 }
 
 export const updateDonation = async (request, response) => {
-  console.log(request.params);
   try {
     let data = await Donation.updateOne(
       request.params,
