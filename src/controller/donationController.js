@@ -47,6 +47,8 @@ export const addDonation = async (request, response) => {
                   createdBy: request.body.createdBy,
                   targetAmmount: request.body.targetAmmount,
                   raisedSoFar: request.body.raisedSoFar,
+                  isFeature:request.body.isfeature,
+                  poster:request.body.poster,
                   dateofCreation: getCurrentDate(),
                 };
 
@@ -87,7 +89,6 @@ export const updateDonation = async (request, response) => {
   }
 
 }
-
 
 export const donationSearchByCategory = async (request, response) => {
   const donations = await Donation.find({

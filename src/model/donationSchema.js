@@ -10,6 +10,8 @@ const donationSchema = mongoose.Schema({
     targetAmmount:Number,
     raisedSoFar:Number,
     dateofCreation:String,
+    isFeature:Boolean,
+    poster:String
 });
 
 const Donation = mongoose.model('donation',donationSchema);
