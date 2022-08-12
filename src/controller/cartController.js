@@ -2,17 +2,18 @@ import Cart from "../model/cartSchema.js";
 import { getCurrentDate } from "../myController/getCurrentDate.js";
 //Parents
 
-export const getCart = async (req, res) => {
+export const getCart = async (req, res) => { 
+  console.log("Hit")
   try {
-    let uses = await Cart.find({userId: req.params.id});
-    res.status(200).json(uses)
+    let carts = await Cart.find({userId: req.params.id});
+    res.status(200).json(carts)
   } catch (error) {
     res.json({ message: error.message })
   }
-}
+} 
 
 export const addToCart = async (request, response) => {
-  console.log("Hit API");
+  console.log(request.body.price);
   if (request.body.title === "") {
     response.json({ message: "Title can not be empty" });
   } else 
@@ -24,7 +25,7 @@ export const addToCart = async (request, response) => {
   if (request.body.image === "") {
     response.json({ message: "Image can not be empty" });
   }else{
-    const parentData = {
+    const cartData = {
       title: request.body.title,
       image: request.body.image,
       productId: request.body.productId,
@@ -33,10 +34,12 @@ export const addToCart = async (request, response) => {
       dateofCreation: getCurrentDate(),
     };
 
-    const newParent = new Cart(parentData);
+    const newCart = new Cart(cartData);
     try {
-      await newParent.save();
-      response.status(201).json(newParent);
+      await newCart.save();
+      response.status(201).json({
+        data:newCart
+      });
       //res.status(201).json({ token, data: newUser });
 
     } catch (error) {

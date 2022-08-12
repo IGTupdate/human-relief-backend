@@ -68,7 +68,7 @@ router.get('/searchDonation/:key',searchDonation);
 
  
 //Cart
-router.get('/getCart',getCart);
+router.get('/getCart/:id',getCart);
 router.post('/addToCart',addToCart);
 router.delete('/deleteCart/:id',deleteCart);
 router.delete('/clearCart/:id',clearCart);
