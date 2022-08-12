@@ -9,6 +9,7 @@ import { deleteFile, deleteFiles, getImagesList, fileUpload } from '../controlle
 import { getParent, addParent, deleteParent, updateParent} from "../controller/parentController.js";
 import { getCategory, addCategory, deleteCategory, updateCategory} from "../controller/categoryController.js";
 import { getDonation, addDonation, deleteDonation, updateDonation ,donationSearchByCategory,searchDonation,getSingleDonation } from "../controller/donationController.js";
+import { getCart, addToCart, deleteCart, clearCart } from '../controller/cartController.js'
 
 import jwt from 'jsonwebtoken';
 const jwtkey = "jwt";
@@ -64,5 +65,13 @@ router.delete('/deleteDonation/:id',deleteDonation);
 router.put('/updateDonation/:_id',updateDonation); 
 router.get('/donationSearchByCategory/:key',donationSearchByCategory); 
 router.get('/searchDonation/:key',searchDonation); 
+
+ 
+//Cart
+router.get('/getCart',getCart);
+router.post('/addToCart',addToCart);
+router.delete('/deleteCart/:id',deleteCart);
+router.delete('/clearCart/:id',clearCart);
+
 
 export default router;  
