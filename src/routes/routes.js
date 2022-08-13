@@ -10,6 +10,7 @@ import { getParent, addParent, deleteParent, updateParent} from "../controller/p
 import { getCategory, addCategory, deleteCategory, updateCategory} from "../controller/categoryController.js";
 import { getDonation, addDonation, deleteDonation, updateDonation ,donationSearchByCategory,searchDonation,getSingleDonation } from "../controller/donationController.js";
 import { getCart, addToCart, deleteCart, clearCart } from '../controller/cartController.js'
+import { addWishlist, getWishlist, deleteWishlist, clearWishlist } from "../controller/wishlistController.js";
 
 import jwt from 'jsonwebtoken';
 const jwtkey = "jwt";
@@ -35,7 +36,7 @@ const tokenVerify = (req,res,next) =>{
     }
 }
 
-
+//user
 router.get('/',getUser);
 router.post('/userList',tokenVerify,userList);
 router.post('/register',userRegister);
@@ -47,17 +48,19 @@ router.get('/users/profile/:id',getProfile);
 router.post('/login',userLogin);  
 router.get('/users/unique/:email',uniqueUser);  
 
+//Parent
 router.get('/getParent',getParent);
 router.post('/addParent',addParent);
 router.delete('/deleteParent/:id',deleteParent);
 router.put('/updateParent/:_id',updateParent); 
 
+//Category
 router.get('/getCategory',getCategory);
 router.post('/addCategory',addCategory);
 router.delete('/deleteCategory/:id',deleteCategory);
 router.put('/updateCategory/:_id',updateCategory); 
 
-//import { getDonation, addDonation, deleteDonation, updateDonation } from "../controller/donationController.js";
+//Donation
 router.get('/getDonation',getDonation);
 router.get('/getSingleDonation/:id',getSingleDonation);
 router.post('/addDonation',addDonation);
@@ -73,5 +76,10 @@ router.post('/addToCart',addToCart);
 router.delete('/deleteCart/:id',deleteCart);
 router.delete('/clearCart/:id',clearCart);
 
+//addWishlist, getWishlist, deleteWishlist, clearWishlist
+router.get('/getWishlist/:id',getWishlist);
+router.delete('/deleteWishlist/:id',deleteWishlist);
+router.delete('/clearWishlist/:id',clearWishlist);
+router.post('/addWishlist/',addWishlist);
 
 export default router;  
