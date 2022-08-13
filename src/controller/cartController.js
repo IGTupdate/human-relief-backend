@@ -49,9 +49,21 @@ export const addToCart = async (request, response) => {
 }
 
 export const deleteCart = async (req, res) => {
+  console.log(req.params.id);
   try {
-          await Cart.findByIdAndDelete({ _id: req.params.id });
-          res.status(201).json("Parent deleted Successfully");
+          const result = await Cart.findByIdAndDelete({ _id: req.params.id });
+          if(result){
+            res.status(201).json({
+              message:"Cart is deleted Sccessfully",
+              status:true,
+            });
+          }else{
+            res.status(201).json({
+              message:"Recored Not Match",
+              status:false,
+            });
+          }
+          
   } catch (error) {
           res.status(409).json({ message: error.message });
   }
