@@ -11,7 +11,7 @@ import { getCategory, addCategory, deleteCategory, updateCategory} from "../cont
 import { getDonation, addDonation, deleteDonation, updateDonation ,donationSearchByCategory,searchDonation,getSingleDonation } from "../controller/donationController.js";
 import { getCart, addToCart, deleteCart, clearCart } from '../controller/cartController.js'
 import { addWishlist, getWishlist, deleteWishlist, clearWishlist } from "../controller/wishlistController.js";
-
+import { uploadImage } from "../controller/imageController.js";
 import jwt from 'jsonwebtoken';
 const jwtkey = "jwt";
 const router = express.Router();
@@ -76,10 +76,41 @@ router.post('/addToCart',addToCart);
 router.delete('/deleteCart/:id',deleteCart);
 router.delete('/clearCart/:id',clearCart);
 
-//addWishlist, getWishlist, deleteWishlist, clearWishlist
+//Wishlist
 router.get('/getWishlist/:id',getWishlist);
 router.delete('/deleteWishlist/:id',deleteWishlist);
 router.delete('/clearWishlist/:id',clearWishlist);
 router.post('/addWishlist/',addWishlist);
+
+
+router.post('/uploads/',uploadImage);
+
+//File Upload
+/*
+import multer from 'multer';
+import { uploadImage } from "../controller/imageController.js";
+router.post('/uploads', (req,res)=>{
+        const storage = multer.diskStorage({
+            destination: function(req,file,cb){
+                cb(null,'./uploads')
+            },
+            filename: function(req,file,cb){
+                cb(null, Date.now() + '--' + file.originalname.replace(/\s+/g, '-').toLowerCase())
+            }
+        })
+    
+        const upload = multer({storage: storage}).single("images");
+    
+        upload(req,res,(err)=>{
+            console.log(req.file);
+            console.log(req.file.filename);
+            res.status(201).json({
+                Message:"File Uploaded",
+                status:true,
+                filename:req.file.filename
+            });
+        }) 
+    }) 
+ */
 
 export default router;  
