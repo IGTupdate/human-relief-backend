@@ -82,6 +82,21 @@ export const deleteDonation = async (req, res) => {
   }
 }
 
+export const wishlistHandle = async (request, response) => {
+  console.log(request.body)
+  try {
+    let data = await Donation.updateOne(
+      request.params,
+      {
+        $set: request.body
+      }
+    );
+    response.send(data);
+  } catch (error) {
+    response.status(409).json({ message: error.message });
+  }
+}
+
 export const updateDonation = async (request, response) => {
   try {
     let data = await Donation.updateOne(
@@ -94,7 +109,6 @@ export const updateDonation = async (request, response) => {
   } catch (error) {
     response.status(409).json({ message: error.message });
   }
-
 }
 
 export const donationSearchByCategory = async (request, response) => {

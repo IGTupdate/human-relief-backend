@@ -11,7 +11,8 @@ const donationSchema = mongoose.Schema({
     raisedSoFar:Number,
     dateofCreation:String,
     isFeature:Boolean,
-    poster:String
+    poster:String,
+    wishlist:Array,
 });
 
 const Donation = mongoose.model('donation',donationSchema);
