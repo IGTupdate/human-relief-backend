@@ -8,7 +8,10 @@ import {getUser, getProfile, userRegister, deleteUser, editUser,changePassword, 
 import { deleteFile, deleteFiles, getImagesList, fileUpload } from '../controller/fileController.js';
 import { getParent, addParent, deleteParent, updateParent} from "../controller/parentController.js";
 import { getCategory, addCategory, deleteCategory, updateCategory} from "../controller/categoryController.js";
-import { getDonation, addDonation, deleteDonation, updateDonation ,donationSearchByCategory,searchDonation,getSingleDonation,wishlistHandle } from "../controller/donationController.js";
+import { 
+    getDonation, addDonation, deleteDonation, updateDonation ,
+    donationSearchByCategory,searchDonation,getSingleDonation,
+    wishlistHandle, getWishlists } from "../controller/donationController.js";
 import { getCart, addToCart, deleteCart, clearCart } from '../controller/cartController.js'
 import { addWishlist, getWishlist, deleteWishlist, clearWishlist } from "../controller/wishlistController.js";
 import { uploadImage } from "../controller/imageController.js";
@@ -85,6 +88,7 @@ router.post('/addWishlist/',addWishlist);
 
 router.post('/uploads/',uploadImage);
 router.put('/wishlistHandle/:_id',wishlistHandle);
+router.get('/wishlistHandle/:key',getWishlists); 
 
 //File Upload
 /*

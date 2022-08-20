@@ -97,6 +97,20 @@ export const wishlistHandle = async (request, response) => {
   }
 }
 
+export const getWishlists = async (request, response) => {
+  const donations = await Donation.find({
+    "$or":[
+      { "wishlist.id": { $regex: request.params.key, $options: '$i' } }
+    ] 
+  });
+
+  try {
+    response.send(donations);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+}
+
 export const updateDonation = async (request, response) => {
   try {
     let data = await Donation.updateOne(
