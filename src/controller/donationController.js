@@ -58,6 +58,8 @@ export const addDonation = async (request, response) => {
                   raisedSoFar: request.body.raisedSoFar,
                   isFeature:request.body.isfeature,
                   poster:request.body.poster,
+                  translation_description:request.body.translation_description,
+                  translation_title:request.body.translation_title,
                   dateofCreation: getCurrentDate(),
                 };
 
@@ -143,7 +145,9 @@ export const searchDonation = async (request, response) => {
   const donations = await Donation.find({
     "$or":[
       { "category.title": { $regex: request.params.key, $options: '$i' } },
-      { "title": { $regex: request.params.key, $options: '$i' } }
+      { "title": { $regex: request.params.key, $options: '$i' } },
+      { "translation_title.en": { $regex: request.params.key, $options: '$i' } },
+      { "translation_title.de": { $regex: request.params.key, $options: '$i' } }
     ]
   });
 

@@ -23,6 +23,7 @@ export const addCategory = async (request, response) => {
       image: request.body.image,
       parent: request.body.parent,
       description: request.body.description, 
+      title_multi_lang: request.body.title_multi_lang, 
       dateofCreation: getCurrentDate(),
     };
 

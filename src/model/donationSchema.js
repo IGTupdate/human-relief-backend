@@ -13,6 +13,8 @@ const donationSchema = mongoose.Schema({
     isFeature:Boolean,
     poster:String,
     wishlist:Array,
+    translation_title:Array,
+    translation_description:Array,
 });
 
 const Donation = mongoose.model('donation',donationSchema);
