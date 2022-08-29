@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import router from './routes/routes.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import paypalRouter from './routes/paypalRouter.js';
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,10 +17,16 @@ app.use(cors());
 app.use(bodyParser.json({extended:true}));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/api', router); 
+app.use('/', paypalRouter); 
 
 app.use(express.static('public')); 
 app.use('/uploads', express.static('images'));
 
+
+app.set('view engine', 'ejs');
+app.get('/',(req,res)=>{
+    res.render('index'); 
+})
  
 mongoose.connect(URL,{
     useNewUrlParser: true, 
