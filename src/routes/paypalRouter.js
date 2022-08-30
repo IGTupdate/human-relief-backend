@@ -4,6 +4,13 @@ import paypal from 'paypal-rest-sdk'
 
 const paypalRouter = express.Router();
 
+/*
+const return_url = "https://human-relief-api.herokuapp.com/success";
+const cancel_url = "https://human-relief-api.herokuapp.com/cancel";
+*/
+const return_url = "http://localhost:5000/success";
+const cancel_url = "http://localhost:5000/cancel";
+
 
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
@@ -23,8 +30,8 @@ paypalRouter.get("/paypal", (req, res) => {
       "payment_method": "paypal"
     },
     "redirect_urls": {
-      "return_url": "https://human-relief-api.herokuapp.com/success",
-      "cancel_url": "https://human-relief-api.herokuapp.com/cancel"
+      "return_url": return_url,
+      "cancel_url": cancel_url
     },
     "transactions": [{
       "item_list": {
@@ -82,7 +89,9 @@ paypalRouter.get('/success',(req,res)=>{
       } else {
           console.log("Get Payment Response");
           console.log(JSON.stringify(payment));
-          res.render("success");
+          console.log(JSON.stringify(payment.id));
+          res.render("success",{paymentId:payment.id});
+          window.ReactNativeWebView.postMessage('Sonu Verma');
       }
   });
 })
