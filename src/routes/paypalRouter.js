@@ -91,7 +91,6 @@ paypalRouter.get('/success',(req,res)=>{
           console.log(JSON.stringify(payment));
           console.log(JSON.stringify(payment.id));
           res.render("success",{paymentId:payment.id});
-          window.ReactNativeWebView.postMessage('Sonu Verma');
       }
   });
 })
