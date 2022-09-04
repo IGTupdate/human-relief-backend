@@ -26,6 +26,7 @@ export const addTransaction = async (req, res) => {
           userId: req.body.userId,
           price: req.body.price,
           item: req.body.item, 
+          paypalId: req.body.paypalId, 
           status: 'complete',
           dateOfCreation: getCurrentDate(),
   };
