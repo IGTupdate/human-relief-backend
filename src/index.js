@@ -8,7 +8,7 @@ import paypalRouter from './routes/paypalRouter.js';
 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 const URL = 'mongodb+srv://react1:YEWO4P4C8eEffOCm@cluster0.rxk8i.mongodb.net/Cluster0?retryWrites=true&w=majority';
 
 
@@ -24,7 +24,7 @@ app.use('/uploads', express.static('images'));
 
 
 app.set('view engine', 'ejs');
-app.get('/',(req,res)=>{
+app.get('/:amt',(req,res)=>{
     res.render('index'); 
 })
  
