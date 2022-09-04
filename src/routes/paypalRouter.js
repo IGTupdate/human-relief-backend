@@ -24,6 +24,7 @@ paypal.configure({
 });
  
 var amt = null;
+var pid = null;
 
 paypalRouter.get('/pay/:amt', (req, res) => {
    
@@ -41,8 +42,8 @@ paypalRouter.get('/pay/:amt', (req, res) => {
     "transactions": [{
         "item_list": {
             "items": [{
-                "name": "Red Hat",
-                "sku": "001",
+                "name": " - Human Relief",
+                "sku": pid,
                 "price": amt,
                 "currency": "USD",
                 "quantity": 1
@@ -52,7 +53,7 @@ paypalRouter.get('/pay/:amt', (req, res) => {
             "currency": "USD",
             "total": amt
         },
-        "description": "Hat for the best team ever"
+        "description": "Do a good deed by giving to those in need. for the best team ever"
     }]
 }; 
 
