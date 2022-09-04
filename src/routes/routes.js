@@ -113,9 +113,14 @@ router.post('/uploads', (req,res)=>{
                 Message:"File Uploaded",
                 status:true,
                 filename:req.file.filename
-            });
+            }); 
         }) 
     }) 
  */
+import { getTransaction, addTransaction, singleTransaction } from "../controller/transactionController.js";
+
+router.get('/transactions/:_id',getTransaction); 
+router.get('/transaction/:_id',singleTransaction); 
+router.post('/transaction',addTransaction);
 
 export default router;  

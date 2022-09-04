@@ -1,7 +1,6 @@
 import User from '../model/user-scheema.js';
 import { encription_data, description_data } from '../myController/cryptography.js';
 import jwt from 'jsonwebtoken';
-import cons from 'consolidate';
 const jwtkey = "jwt";
 import { getCurrentDate } from '../myController/getCurrentDate.js';
 

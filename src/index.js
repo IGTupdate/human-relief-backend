@@ -18,15 +18,11 @@ app.use(bodyParser.json({extended:true}));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/api', router); 
 app.use('/', paypalRouter); 
-
+ 
 app.use(express.static('public')); 
 app.use('/uploads', express.static('images'));
 
-
-app.set('view engine', 'ejs');
-app.get('/:amt',(req,res)=>{
-    res.render('index'); 
-})
+ 
  
 mongoose.connect(URL,{
     useNewUrlParser: true, 

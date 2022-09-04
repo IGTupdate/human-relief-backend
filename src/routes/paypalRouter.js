@@ -1,5 +1,5 @@
 import express from "express";
-import paypal from 'paypal-rest-sdk'
+import paypal from 'paypal-rest-sdk';
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -98,6 +98,5 @@ paypalRouter.get('/success', (req, res) => {
 paypalRouter.get('/cancel',(req,res)=>{
   res.sendFile(__dirname + "/cancel.html")
 })
-
 
 export default paypalRouter;
