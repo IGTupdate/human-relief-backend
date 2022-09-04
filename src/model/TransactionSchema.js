@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 
 const TransactionSchema = mongoose.Schema({
-    title:String,
+    transactionId:String,
     userId:String,
+    paypalId:String,
 	  price:String,
     item:Array,
     status:String,

@@ -12,7 +12,7 @@ export const getTransaction = async (req, res) => {
 
 export const singleTransaction = async (req, res) => {
   try {
-          let transactions = await Transaction.findOne({_id:req.params._id});
+          let transactions = await Transaction.findOne({transactionId:req.params._id});
           res.status(200).json(transactions)
   } catch (error) {
           res.json({ message: error.message })
@@ -22,7 +22,7 @@ export const singleTransaction = async (req, res) => {
 export const addTransaction = async (req, res) => {
   const userData = {
           //_id:new mongoose.Types.ObjectId(),
-          title: req.body.title,
+          transactionId: req.body.transactionId,
           userId: req.body.userId,
           price: req.body.price,
           item: req.body.item, 
