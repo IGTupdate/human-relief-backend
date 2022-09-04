@@ -1,7 +1,9 @@
 import User from '../model/user-scheema.js';
 import { encription_data, description_data } from '../myController/cryptography.js';
 import jwt from 'jsonwebtoken';
+import cons from 'consolidate';
 const jwtkey = "jwt";
+import { getCurrentDate } from '../myController/getCurrentDate.js';
 
 export const getUser = async (req, res) => {
         try {
@@ -57,6 +59,7 @@ const tokenVerify = (req, res, next) => {
 
 export const userRegister = async (req, res) => {
         //res.status(200).json('Send data From user Routes 420');
+        console.log("API hit 1");
         const password = encription_data(req.body.password);
 
         const userData = {
