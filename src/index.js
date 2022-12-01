@@ -9,8 +9,9 @@ import paypalRouter from './routes/paypalRouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-// const URL = 'mongodb+srv://kuldeepsen:KKss1997@cluster0.v2fxl4e.mongodb.net/?retryWrites=true&w=majority';
-const URL = 'mongodb+srv://react1:YEWO4P4C8eEffOCm@cluster0.rxk8i.mongodb.net/Cluster0?retryWrites=true&w=majority';
+
+const URL = 'mongodb+srv://kuldeepsen:KKss1997@cluster0.v2fxl4e.mongodb.net/?retryWrites=true&w=majority';
+// const URL = 'mongodb+srv://react1:YEWO4P4C8eEffOCm@cluster0.rxk8i.mongodb.net/Cluster0?retryWrites=true&w=majority';
 
 
 app.use(cors());
