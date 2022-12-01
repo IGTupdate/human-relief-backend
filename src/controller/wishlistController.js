@@ -12,14 +12,23 @@ export const getWishlist = async (req, res) => {
 }
 
 export const addWishlist = async (request, response) => {
-  if (request.body.userId === "") {
-    response.json({ message: "User id can not be empty" });
-  } else
 
-    if (request.body.pastId === "") {
-      response.json({ message: "Post is can not be empty" });
+  const wishlist = await Wishlist.findOne({ postId: request.body.postId, userId: request.body.userId })
+
+  if (wishlist) {
+    response.status(400).send(
+      { message: "Post Id must be unique" }
+    )
+  }
+  else {
+
+    if (request.body.userId === "") {
+      response.json({ message: "User id can not be empty" });
     } else
-      {
+
+      if (request.body.pastId === "") {
+        response.json({ message: "Post is can not be empty" });
+      } else {
         const wishlistdataData = {
           userId: request.body.userId,
           postId: request.body.postId,
@@ -38,6 +47,8 @@ export const addWishlist = async (request, response) => {
           response.status(500).json({ message: error.message });
         }
       }
+  }
+
 }
 
 export const deleteWishlist = async (req, res) => {

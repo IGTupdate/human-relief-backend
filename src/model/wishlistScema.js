@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const wishlistScema = mongoose.Schema({
-    postId: { type: String, unique: true },
+    postId: { type: String },
     userId: String,
     dateofCreation: String,
 });
